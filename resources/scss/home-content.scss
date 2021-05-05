@@ -1,0 +1,15 @@
+@import "variables.scss";
+
+.home-content {
+    @apply my-8;
+    div:first-child{
+        @apply text-xl m-4;
+        text-align: center;
+    }
+
+    div:nth-child(2){
+        @apply bg-gray-800 px-8 py-4 rounded;
+        margin: auto;
+        box-shadow: $tile-shadow;
+    }
+}

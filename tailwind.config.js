@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: [
     './resources/**/*.blade.php',
@@ -6,6 +8,9 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      gray: colors.gray
+    },
     extend: {},
   },
   variants: {

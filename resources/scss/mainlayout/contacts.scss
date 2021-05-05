@@ -1,0 +1,12 @@
+@import "../variables.scss";
+
+.contacts {
+    @apply flex flex-col flex-none py-4;
+    background-color: $primary-color;
+    margin-top: auto;
+    div, a{
+        @apply m-1;
+        color: white;
+    }
+
+}

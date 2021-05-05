@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+
+.header{
+    @apply flex flex-row px-10 p-4 flex-none justify-between;
+    background-color: $primary-color;
+
+    a:link, a:visited{
+        @apply text-2xl;
+        color: white;
+        
+    }
+}
+
+

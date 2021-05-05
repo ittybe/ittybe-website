@@ -1,0 +1,14 @@
+@import "../variables.scss";
+
+body, .page-wrapper{
+    min-height: 100vh;
+}
+
+.page-wrapper{
+    @apply bg-gray-900 flex flex-col;
+    color: white;
+}
+
+.section {
+    @apply px-8;
+}

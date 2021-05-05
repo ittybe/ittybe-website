@@ -2,3 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "variables.scss";
+@import "home-content.scss";
+@import "mainlayout/app.scss";
+@import "mainlayout/header.scss";
+@import "mainlayout/contacts.scss";
+
+.tile {
+    @apply bg-gray-800 px-8 py-4 rounded;
+    box-shadow: $tile-shadow;
+}
