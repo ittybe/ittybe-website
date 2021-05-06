@@ -1,0 +1,18 @@
+@import "variables.scss";
+
+.post_summary {
+    @apply m-6 block transition;
+
+    div {
+        @apply text-gray-200 text-sm;
+    }
+    
+    div:first-child {
+        @apply text-xl mb-4;
+        color: white;
+    }
+
+    &:hover{
+        @apply bg-gray-700;
+    }
+}

@@ -5,8 +5,18 @@
 @endsection
 
 @section("content")
-    <div class="home-content section">
-        <div>about this website</div>
-        <div>Lorem ipsum <a class="text-link" href="https://laravel.com">laravel</a> dolor sit, amet consectetur adipisicing elit. Earum, accusamus?</div>
-    </div>  
+<div class="section">
+
+    @foreach ($posts_summary as $post)
+        <a href={{"/post/" . strval($post["id"])}} class="post_summary section tile">
+            <div>{{$post["postname"]}}</div>
+            <div>created at {{$post["created_at"]}}</div>
+            @if (!empty($post["updated_at"]))
+                <div>updated at {{$post["updated_at"]}}</div>
+            @endif
+        </a>
+    @endforeach
+</div>
+
 @endsection
+

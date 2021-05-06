@@ -17,10 +17,16 @@ class PostController extends Controller
         $posts = Post::all();
         $posts_summary = [];
         foreach ($posts as $post) {
-            $post_summary = [$post["id"], $post["postname"], $post["created_at"], $post["updated_at"]];
-            array_push($posts_summary, $post_summary);
+            if ($post["published"]){
+                $post_summary = [
+                    "id" => $post["id"],
+                    "postname" => $post["postname"], 
+                    "created_at" => $post["created_at"], 
+                    "updated_at" => $post["updated_at"]];
+                array_push($posts_summary, $post_summary);
+            }
         }
-        return view("posts", compact("post_summary"));
+        return view("posts", compact("posts_summary"));
     }
 
     /**
@@ -52,8 +58,18 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        if (!empty($post)) 
+        {
+            return view ("post", compact('post'));
+        }
+        else
+        {
+            return view("404");
+        }
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

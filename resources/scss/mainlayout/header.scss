@@ -6,8 +6,12 @@
     background-color: $primary-color;
 
     a:link, a:visited{
-        @apply text-2xl;
+        @apply text-2xl transition;
         color: white;
+
+        &:hover{
+            @apply text-gray-200;
+        }
         
     }
 }
