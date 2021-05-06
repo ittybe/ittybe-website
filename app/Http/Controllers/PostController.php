@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,13 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        $posts_summary = [];
+        foreach ($posts as $post) {
+            $post_summary = [$post["id"], $post["postname"], $post["created_at"], $post["updated_at"]];
+            array_push($posts_summary, $post_summary);
+        }
+        return view("posts", compact("post_summary"));
     }
 
     /**
