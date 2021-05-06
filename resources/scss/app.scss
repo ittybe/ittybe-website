@@ -11,3 +11,13 @@
     @apply bg-gray-800 px-8 py-4 rounded;
     box-shadow: $tile-shadow;
 }
+
+.text-link:link, .text-link:visited {
+    color: white;
+    text-decoration: underline;
+    
+    &:hover {
+        @apply text-gray-300;
+    }
+
+}

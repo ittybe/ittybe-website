@@ -18941,6 +18941,16 @@ body, .page-wrapper {
   box-shadow: 0px 7px 23px -2px rgba(0, 0, 0, 0.84);
 }
 
+.text-link:link, .text-link:visited {
+  color: white;
+  text-decoration: underline;
+}
+
+.text-link:link:hover, .text-link:visited:hover {
+  --tw-text-opacity: 1;
+  color: rgba(212, 212, 216, var(--tw-text-opacity));
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
