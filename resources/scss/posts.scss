@@ -8,8 +8,8 @@
     }
     
     div:first-child {
-        @apply text-xl mb-4;
-        color: white;
+        @apply mb-4;
+        @include post-title;
     }
 
     &:hover{

@@ -7,6 +7,8 @@
 @import "mainlayout/header.scss";
 @import "mainlayout/contacts.scss";
 @import "posts.scss";
+@import "post.scss";
+@import "markdown-body.scss";
 
 .tile {
     @apply bg-gray-800 px-8 py-4 rounded;
