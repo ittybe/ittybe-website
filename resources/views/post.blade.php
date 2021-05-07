@@ -1,22 +1,30 @@
 @extends("layouts\mainlayout")
 
 @section("title")
-    {{$post["postname"]}}
+{{$post["postname"]}}
 @endsection
 
 @section("content")
-<div class="section">
-    <div class="post section tile">
-        <div>{{$post["postname"]}}</div>
-        <div>created at {{$post["created_at"]}}</div>
-        @if (!empty($post["updated_at"]))
+<div class="post-section section">
+    <div class="post">
+        <div>
+            <div>{{$post["postname"]}}</div>
+            @if (!empty($post["created_at"]))
+            <div>created at {{$post["created_at"]}}</div>
+            @endif
+
+            @if (!empty($post["updated_at"]))
             <div>updated at {{$post["updated_at"]}}</div>
-        @endif
-        <div class="markdown-body">
-            {!!$markdown!!}
+            @endif
         </div>
+        <div class="markdown-wrapper">
+            <div class="markdown-body">
+                {!!$markdown!!}
+            </div>
+        </div>
+
     </div>
+
 </div>
 
 @endsection
-

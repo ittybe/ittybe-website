@@ -1,16 +1,31 @@
 @import "variables";
 
-
+.post-section{
+    @apply m-4;
+}
 .post {
-    @apply m-5;
+    margin-bottom: -1px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px; 
+    border: 1px solid var(--color-border-primary);
     
-    div:first-child {
-        @apply mb-4;
-        @include post-title();
-        
+    
+    .markdown-wrapper {
+        @apply m-5;
     }
-    div:nth-child(2) {
-        @apply text-gray-200 text-sm;
+}
+
+.post>div:first-child {
+    @apply p-5;
+    border-bottom: 1px solid var(--color-border-primary);
+
+    div {
+        @apply text-sm my-1;
+        color: var(--color-text-secondary);
     }
 
+    div:first-child {
+        @include post-title();
+        color: var(--color-text-primary);
+    }
 }
