@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -61,11 +62,21 @@ class PostController extends Controller
         $post = Post::find($id);
         if (!empty($post)) 
         {
-            return view ("post", compact('post'));
+            // get longtext markdown
+            $markdown = $post["markdown"];
+            
+            // convert it to html
+            $markdown = Markdown::convertToHtml($markdown);
+            
+            // youtube link have to be converted as video on webpage
+            // later
+
+            // give it markdown (html format) to view and return
+            return view ("post", compact('post', 'markdown'));
         }
         else
         {
-            return view("404");
+            abort(404);
         }
     }
 
