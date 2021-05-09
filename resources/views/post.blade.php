@@ -18,7 +18,6 @@
             @endif
         </div>
     </div>
-    <div class="placeholder none-style"></div>
     <div class="post">
 
         <div class="markdown-wrapper">

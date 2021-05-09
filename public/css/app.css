@@ -19061,6 +19061,8 @@ body, .page-wrapper {
     width: 300px;
     height: 90vh;
     overflow-y: auto;
+    position: sticky;
+    top: 0;
     bottom: 0;
   }
 }
@@ -19084,28 +19086,6 @@ body, .page-wrapper {
   line-height: 1.75rem;
   color: white;
   color: var(--color-text-primary);
-}
-
-.sticky {
-  position: fixed;
-  display: block;
-  top: 0;
-}
-
-.block-style {
-  display: block;
-}
-
-.none-style {
-  display: none;
-}
-
-.toc-width {
-  width: 300px;
-}
-
-.absolute-style {
-  position: absolute;
 }
 
 :root {

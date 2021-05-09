@@ -47,6 +47,8 @@ $toc-width: 300px;
         width: $toc-width;
         height: 90vh;
         overflow-y: auto;
+        position: sticky;
+        top: 0;
         bottom: 0;
     }
 }
@@ -64,24 +66,4 @@ $toc-width: 300px;
         @include post-title();
         color: var(--color-text-primary);
     }
-}
-
-
-// for sticky nav trick
-.sticky {
-    position: fixed;
-    display: block;
-    top: 0;
-}
-.block-style {
-    display: block;
-}
-.none-style {
-    display: none;
-}
-.toc-width {
-    width: $toc-width;
-}
-.absolute-style {
-    position: absolute;
 }
