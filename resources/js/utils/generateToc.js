@@ -1,4 +1,4 @@
-window.onload = function (selectorQuery) {
+function generateToc(selectorQuery) {
     var toc = "";
     var level = 0;
 

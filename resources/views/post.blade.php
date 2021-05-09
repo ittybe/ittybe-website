@@ -7,7 +7,7 @@
 @section("content")
 <div class="post-section">
     <div id="toc">
-        
+        <h3>Table of content</h3>
     </div>
     <div class="post">
         <div>
