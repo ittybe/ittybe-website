@@ -1,22 +1,58 @@
 @import "variables";
+$toc-width: 300px;
+.post-section {
+    @apply m-4 flex flex-auto flex-col lg:flex-row;
+    position: relative;
+    .placeholder {
+        @apply flex-none mr-4;
+        width: $toc-width;
+    }
 
-.post-section{
-@apply m-4;
 }
+
+
 .post {
+    @apply lg:rounded;
     margin-bottom: -1px;
-    border-radius: 6px;
     border: 1px solid var(--color-border-primary);
-    
-    
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: 100%;
     .markdown-wrapper {
         @apply m-5;
     }
 }
 
-.post>div:first-child {
-    @apply p-5;
-    border-bottom: 1px solid var(--color-border-primary);
+#toc {
+    padding-left: 15%;
+    padding-right: 15%;
+    color: var(--color-text-primary);
+    margin-bottom: -1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid var(--color-border-primary);
+    border-bottom: none;
+    ul {
+        @apply my-2;
+        list-style-type: decimal;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    @apply pt-4 pb-4 text-xl lg:mr-4 lg:rounded lg:flex-none   lg:px-8;
+}
+@media (min-width: 1024px) { 
+    #toc {
+        border-bottom: 1px solid var(--color-border-primary);
+        width: $toc-width;
+        height: 90vh;
+        overflow-y: auto;
+        bottom: 0;
+    }
+}
+
+#toc > div:first-child {
+    @apply mb-6;
 
     div {
         @apply text-sm my-1;
@@ -24,7 +60,28 @@
     }
 
     div:first-child {
+        @apply text-xl;
         @include post-title();
         color: var(--color-text-primary);
     }
+}
+
+
+// for sticky nav trick
+.sticky {
+    position: fixed;
+    display: block;
+    top: 0;
+}
+.block-style {
+    display: block;
+}
+.none-style {
+    display: none;
+}
+.toc-width {
+    width: $toc-width;
+}
+.absolute-style {
+    position: absolute;
 }

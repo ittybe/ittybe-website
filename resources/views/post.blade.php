@@ -7,9 +7,6 @@
 @section("content")
 <div class="post-section">
     <div id="toc">
-        <h3>Table of content</h3>
-    </div>
-    <div class="post">
         <div>
             <div>{{$post["postname"]}}</div>
             @if (!empty($post["created_at"]))
@@ -20,6 +17,10 @@
             <div>updated at {{$post["updated_at"]}}</div>
             @endif
         </div>
+    </div>
+    <div class="placeholder none-style"></div>
+    <div class="post">
+
         <div class="markdown-wrapper">
             <div class="markdown-body">
                 {!!$markdown!!}

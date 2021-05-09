@@ -1838,9 +1838,89 @@ module.exports = {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_generateToc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/generateToc */ "./resources/js/utils/generateToc.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
+
+window.onload = function () {};
+
+document.addEventListener('DOMContentLoaded', function () {
+  // generate table of content
+  (0,_utils_generateToc__WEBPACK_IMPORTED_MODULE_0__.generateToc)(".markdown-body"); // Get the list todo change name of variable 
+
+  var toc = document.querySelector("#toc");
+  var ul = document.querySelector("#toc ul");
+  var footer = document.querySelector(".contacts");
+  var placeholder = document.querySelector(".post-section .placeholder"); // Get the offset position of the navbar
+
+  var sticky = toc.offsetTop;
+
+  function checkOffset() {
+    function getRectTop(el) {
+      var rect = el.getBoundingClientRect();
+      return rect.top;
+    }
+
+    if (getRectTop(toc) + document.body.scrollTop + toc.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 10 && toc.classList.contains("sticky")) {
+      toc.classList.add("absolute-style");
+      toc.classList.remove("sticky");
+      return true;
+    }
+
+    if (document.body.scrollTop + window.innerHeight < getRectTop(footer) + document.body.scrollTop && toc.classList.contains("absolute-style")) {
+      toc.classList.remove("absolute-style");
+      toc.classList.add("sticky");
+      return false;
+    } // toc.innerHTML = document.body.scrollTop + window.innerHeight;
+
+  } // Add the sticky class to the toc when you reach its scroll position. Remove "sticky" when you leave the scroll position
+
+
+  function stickToc() {
+    // var posStyles = ["mr-4", "pr-8"];
+    if (document.documentElement.clientWidth >= 1024) {
+      if (checkOffset()) {
+        return;
+      }
+
+      if (window.pageYOffset > sticky && !toc.classList.contains("absolute-style")) {
+        setTimeout(function () {
+          toc.classList.add("sticky");
+          placeholder.classList.add("block-style");
+          placeholder.classList.remove("none-style");
+        }, 1); // ul.classList.add("sticky");
+        // ul.classList.add("toc-width");
+        // // placing of ul coping toc class
+        // posStyles.forEach(styleClass => {
+        //     ul.classList.add(styleClass)
+        // });
+        // toc.classList.add("none-style");
+      } else if (!toc.classList.contains("absolute-style")) {
+        // ul.classList.remove("sticky");
+        // ul.classList.remove("toc-width");
+        // // placing of ul coping toc class
+        // posStyles.forEach(styleClass => {
+        //     ul.classList.remove(styleClass)
+        // });
+        toc.classList.remove("sticky"); // toc.classList.remove("none-style");
+
+        placeholder.classList.remove("block-style");
+        placeholder.classList.add("none-style");
+      }
+    }
+  } // When the user scrolls the page, execute myFunction
+
+
+  window.onscroll = function () {
+    stickToc();
+  }; // window.onscroll = function () { checkOffset() };
+
+});
 
 /***/ }),
 
@@ -1872,6 +1952,47 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/utils/generateToc.js":
+/*!*******************************************!*\
+  !*** ./resources/js/utils/generateToc.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "generateToc": () => (/* binding */ generateToc)
+/* harmony export */ });
+function generateToc(selectorQuery) {
+  var toc = "";
+  var level = 0;
+  document.querySelector(selectorQuery).innerHTML = document.querySelector(selectorQuery).innerHTML.replace(/<h([\d])>([^<]+)<\/h([\d])>/gi, function (str, openLevel, titleText, closeLevel) {
+    if (openLevel != closeLevel) {
+      return str;
+    }
+
+    if (openLevel > level) {
+      toc += new Array(openLevel - level + 1).join("<ul>");
+    } else if (openLevel < level) {
+      toc += new Array(level - openLevel + 1).join("</ul>");
+    }
+
+    level = parseInt(openLevel);
+    var anchor = titleText.replace(/ /g, "_");
+    toc += "<li><a href=\"#" + anchor + "\">" + titleText + "</a></li>";
+    return "<h" + openLevel + "><a name=\"" + anchor + "\">" + titleText + "</a></h" + closeLevel + ">";
+  });
+
+  if (level) {
+    toc += new Array(level + 1).join("</ul>");
+  }
+
+  document.getElementById("toc").innerHTML += toc;
+}
+;
 
 /***/ }),
 
@@ -19087,10 +19208,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
+/***/ "./resources/scss/app.scss":
+/*!*********************************!*\
+  !*** ./resources/scss/app.scss ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19358,6 +19479,18 @@ process.umask = function() { return 0; };
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -19453,7 +19586,7 @@ process.umask = function() { return 0; };
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/scss/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
