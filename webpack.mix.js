@@ -10,6 +10,9 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+
+
+// styles
 mix.sass('resources/scss/app.scss', 'public/css/app.css')
     .options({
         processCssUrls: true,
@@ -17,4 +20,6 @@ mix.sass('resources/scss/app.scss', 'public/css/app.css')
             require("tailwindcss"),
             require("autoprefixer")
         ],
-    })
+    });
+// js 
+mix.js('resources/js/app.js', 'public/js');

@@ -1,4 +1,4 @@
-function generateToc(selectorQuery) {
+export function generateToc(selectorQuery) {
     var toc = "";
     var level = 0;
 
@@ -33,3 +33,4 @@ function generateToc(selectorQuery) {
 
     document.getElementById("toc").innerHTML += toc;
 };
+
