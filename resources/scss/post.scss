@@ -1,12 +1,11 @@
 @import "variables";
 
 .post-section{
-    @apply m-4;
+@apply m-4;
 }
 .post {
     margin-bottom: -1px;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px; 
+    border-radius: 6px;
     border: 1px solid var(--color-border-primary);
     
     
