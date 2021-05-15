@@ -3,11 +3,6 @@ $toc-width: 300px;
 .post-section {
     @apply m-4 flex flex-auto flex-col lg:flex-row;
     position: relative;
-    .placeholder {
-        @apply flex-none mr-4;
-        width: $toc-width;
-    }
-
 }
 
 
@@ -36,17 +31,16 @@ $toc-width: 300px;
     a:hover {
         text-decoration: underline;
     }
-    li {
-        list-style-type: circle;
-    }
-    li li {
-        list-style-type: square;
+    ol, ul{
+        li {
+            @apply pl-4;
+        }
+        list-style: circle;
     }
     @apply pt-4 pb-4 text-xl lg:mr-4 lg:rounded lg:flex-none   lg:px-8;
 }
-#toc>ul>ul {
-    @apply my-2;
-    list-style-type: decimal;
+#toc>ul>ul ul {
+    @apply pl-8
 }
 @media (min-width: 1024px) { 
     #toc {
