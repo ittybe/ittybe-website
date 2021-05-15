@@ -62,6 +62,12 @@ class PostController extends Controller
         $post = Post::find($id);
         if (!empty($post)) 
         {
+            // check for published
+            if(!$post["published"]){
+                abort(404);
+            }
+
+
             // get longtext markdown
             $markdown = $post["markdown"];
             
