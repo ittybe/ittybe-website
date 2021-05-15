@@ -67,7 +67,6 @@ class PostController extends Controller
                 abort(404);
             }
 
-
             // get longtext markdown
             $markdown = $post["markdown"];
             
