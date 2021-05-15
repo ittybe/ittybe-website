@@ -32,14 +32,21 @@ $toc-width: 300px;
     border-top-right-radius: 6px;
     border: 1px solid var(--color-border-primary);
     border-bottom: none;
-    ul {
-        @apply my-2;
-        list-style-type: decimal;
-    }
+    
     a:hover {
         text-decoration: underline;
     }
+    li {
+        list-style-type: circle;
+    }
+    li li {
+        list-style-type: square;
+    }
     @apply pt-4 pb-4 text-xl lg:mr-4 lg:rounded lg:flex-none   lg:px-8;
+}
+#toc>ul>ul {
+    @apply my-2;
+    list-style-type: decimal;
 }
 @media (min-width: 1024px) { 
     #toc {
