@@ -5,9 +5,35 @@ namespace App\Http\Controllers;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\PostsTags;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
+    private function get_post_summary($id){
+        $post = Post::find($id);
+        // get poststags of our post
+        $poststags = PostsTags::where("postid", $post["id"]);
+                
+        // get list of tags (string) in poststags
+        $tags = [];
+        foreach ($poststags as $poststag) {
+            $tagid = $poststag["tagid"];
+            $tagname = Tag::find($tagid)["tagname"];
+            // save in list
+            array_push($tags, $tagname);                    
+        }
+
+        $post_summary = [
+            "id" => $post["id"],
+            "postname" => $post["postname"], 
+            "created_at" => $post["created_at"], 
+            "updated_at" => $post["updated_at"],
+            "tags" => $tags
+        ];
+        return $post_summary;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +45,7 @@ class PostController extends Controller
         $posts_summary = [];
         foreach ($posts as $post) {
             if ($post["published"]){
-                $post_summary = [
-                    "id" => $post["id"],
-                    "postname" => $post["postname"], 
-                    "created_at" => $post["created_at"], 
-                    "updated_at" => $post["updated_at"]];
+                $post_summary = $this->get_post_summary($post["id"]);
                 array_push($posts_summary, $post_summary);
             }
         }
@@ -72,12 +94,13 @@ class PostController extends Controller
             
             // convert it to html
             $markdown = Markdown::convertToHtml($markdown);
-            
+
+            $post_summary = $this->get_post_summary($post["id"]);
             // youtube link have to be converted as video on webpage
             // later
 
             // give it markdown (html format) to view and return
-            return view ("post", compact('post', 'markdown'));
+            return view ("post", compact('post_summary', 'markdown'));
         }
         else
         {
