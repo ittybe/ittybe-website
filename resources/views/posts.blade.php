@@ -1,29 +1,32 @@
 @extends("layouts\mainlayout")
 
 @section("title")
-    Posts
+Posts
 @endsection
 
 @section("content")
 <div class="section">
 
     @foreach ($posts_summary as $post)
-        
-        <a href={{"/post/" . strval($post["id"])}} class="post_summary section tile">
-            
-            <!-- <div>{{$post["postname"]}}</div>
-            <div>created at {{$post["created_at"]}}</div>
-            @if (!empty($post["updated_at"]))
-                <div>updated at {{$post["updated_at"]}}</div>
-            @endif  -->
-            <div class="posts_tags">
+    <a href={{"/post/" . strval($post["id"])}} class="post_summary section tile">
+
+        <div>{{$post["postname"]}}</div>
+        <div>created at {{$post["created_at"]}}</div>
+        @if (!empty($post["updated_at"]))
+        <div>updated at {{$post["updated_at"]}}</div>
+        @endif
+        <div class="posts_tags">
+            <span>
                 @foreach ($post["tags"] as $tag)
-                    <a href="#">{{$tag}}</a>
+                {{$tag}}
+                @if (!$loop->last)
+                , 
+                @endif
                 @endforeach
-            </div>
-        </a>
+            </span>
+        </div>
+    </a>
     @endforeach
 </div>
 
 @endsection
-
