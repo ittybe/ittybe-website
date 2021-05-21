@@ -19033,10 +19033,6 @@ body, .page-wrapper {
   text-decoration: underline;
 }
 
-#toc ol, #toc ul {
-  list-style: circle;
-}
-
 #toc ol li, #toc ul li {
   padding-left: 1rem;
 }
@@ -19047,6 +19043,9 @@ body, .page-wrapper {
 }
 
 #toc > ul > ul ul {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0.5rem;
   padding-left: 2rem;
 }
 
