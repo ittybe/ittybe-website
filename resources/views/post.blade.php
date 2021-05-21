@@ -1,20 +1,20 @@
 @extends("layouts\mainlayout")
 
 @section("title")
-{{$post["postname"]}}
+{{$post_summary["postname"]}}
 @endsection
 
 @section("content")
 <div class="post-section">
     <div id="toc">
         <div>
-            <div>{{$post["postname"]}}</div>
-            @if (!empty($post["created_at"]))
-            <div>created at {{$post["created_at"]}}</div>
+            <div>{{$post_summary["postname"]}}</div>
+            @if (!empty($post_summary["created_at"]))
+            <div>created at {{$post_summary["created_at"]}}</div>
             @endif
 
-            @if (!empty($post["updated_at"]))
-            <div>updated at {{$post["updated_at"]}}</div>
+            @if (!empty($post_summary["updated_at"]))
+            <div>updated at {{$post_summary["updated_at"]}}</div>
             @endif
         </div>
     </div>

@@ -18950,23 +18950,23 @@ body, .page-wrapper {
   transition-duration: 150ms;
 }
 
-.post_summary div {
+.post_summary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(63, 63, 70, var(--tw-bg-opacity));
+}
+
+.post_summary > div {
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgba(228, 228, 231, var(--tw-text-opacity));
 }
 
-.post_summary div:first-child {
+.post_summary > div:first-child {
   margin-bottom: 1rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: white;
-}
-
-.post_summary:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(63, 63, 70, var(--tw-bg-opacity));
 }
 
 .post-section {

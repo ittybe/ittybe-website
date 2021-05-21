@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -12,13 +13,14 @@ class PostController extends Controller
 {
     private function get_post_summary($id){
         $post = Post::find($id);
+
         // get poststags of our post
-        $poststags = PostsTags::where("postid", $post["id"]);
-                
+        $poststags = DB::table("posts_tags")->where("postid", $post["id"])->get();
+
         // get list of tags (string) in poststags
         $tags = [];
         foreach ($poststags as $poststag) {
-            $tagid = $poststag["tagid"];
+            $tagid = $poststag->tagid;
             $tagname = Tag::find($tagid)["tagname"];
             // save in list
             array_push($tags, $tagname);                    
@@ -48,6 +50,7 @@ class PostController extends Controller
                 $post_summary = $this->get_post_summary($post["id"]);
                 array_push($posts_summary, $post_summary);
             }
+            
         }
         return view("posts", compact("posts_summary"));
     }
