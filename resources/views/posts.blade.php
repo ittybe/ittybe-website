@@ -8,15 +8,17 @@
 <div class="section">
 
     @foreach ($posts_summary as $post)
+        
         <a href={{"/post/" . strval($post["id"])}} class="post_summary section tile">
-            <div>{{$post["postname"]}}</div>
+            
+            <!-- <div>{{$post["postname"]}}</div>
             <div>created at {{$post["created_at"]}}</div>
             @if (!empty($post["updated_at"]))
                 <div>updated at {{$post["updated_at"]}}</div>
-            @endif 
+            @endif  -->
             <div class="posts_tags">
                 @foreach ($post["tags"] as $tag)
-                    <a href="#">{{$tag["tagname"]}}</a>
+                    <a href="#">{{$tag}}</a>
                 @endforeach
             </div>
         </a>
