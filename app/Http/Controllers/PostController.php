@@ -50,7 +50,6 @@ class PostController extends Controller
         foreach ($ids as $id) {
             array_push($posts, Post::find($id));
         }
-
         $posts_summary = [];
         foreach ($posts as $post) {
             if ($post["published"]){
@@ -66,16 +65,18 @@ class PostController extends Controller
         // get query in string format  
         $query = trim($request->get("q"));
         $action = trim($request->get("action"));
-        $posts_summary = [];
-        switch ($action) {
-            case 'bytags':
-                $this->search_by_tags($query);
-                break;
-            case 'byname':
-                $this->search_by_name($query);
-                break;
-        }
 
+        $posts_summary = [];
+        if (!empty($query)){
+            switch ($action) {
+                case 'bytags':
+                    $posts_summary = $this->search_by_tags($query);
+                    break;
+                case 'byname':
+                    $posts_summary = $this->search_by_name($query);
+                    break;
+            }
+        }        
         return view("posts", compact("posts_summary"));
     }
     
@@ -84,19 +85,39 @@ class PostController extends Controller
         $tags = explode(" ", $q);
         
         $postsids = [];
+
         // foreach in list of query  
         foreach ($tags as $tag) {
             
             // find tag by tagname and get its id 
-            $tagid = DB::table("tags")->where("tagname", "=", $tag);
-
+            $tagid = DB::table("tags")->where("tagname", "=", $tag)->first();
+            if (empty($tagid)){
+                break;
+            }
+            else {
+                $tagid = $tagid->id;
+            }
             // find and save all poststags
-            $poststags = DB::table("posts_tags")->where("tagid", $tagid)->get();
+            $poststags = DB::table("posts_tags")->where("tagid", "=", $tagid)->get();
             
+
+            // buffer for posts (we multiply sets and get what we need)
+            $bufferpostsids = [];
             // get post id from poststags and save id
             foreach ($poststags as $posttag) {
-                $postid = $posttag["postid"];
-                array_push($postsids, $postid);
+                $postid = $posttag->postid;
+
+                array_push($bufferpostsids, $postid);
+            }
+
+            if(empty($postsids)){
+                // we dont need to intersect array because it is first try
+                $postsids = $bufferpostsids;
+            }
+            else {
+                // but then we have other posts that may have not tags that we looking for
+                // that s why we intersect those
+                $postsids = array_intersect($postsids, $bufferpostsids);
             }
         }
 
@@ -108,7 +129,16 @@ class PostController extends Controller
     }   
 
     private function search_by_name($q){
-
+        // find something like q 
+        $posts = DB::table("posts")->where("postname", "LIKE","%{$q}%")->get();
+        // get ids 
+        $postsids = [] ;
+        foreach ($posts as $post) {
+            array_push($postsids, $post->id);
+        }
+        // throw it to function 
+        // and return 
+        return $this->get_posts_summary($postsids);
     }
 
     /**
