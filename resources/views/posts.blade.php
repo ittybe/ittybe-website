@@ -25,10 +25,7 @@ Posts
                     @if (!empty($post["tags"]))
                     tags:
                     @foreach ($post["tags"] as $tag)
-                    {{$tag}}
-                    @if (!$loop->last)
-                    ,
-                    @endif
+                    {{$tag}} 
                     @endforeach
                     @endif
                 </span>

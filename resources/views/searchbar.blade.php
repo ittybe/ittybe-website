@@ -16,7 +16,7 @@
         {{ csrf_field() }}
         <div class="input-group">
             <div>
-                <input type="text" class="form-control" placeholder="search" name="q">
+                <input type="text" class="form-control" placeholder="search" name="q" >
             </div>
             <div class="btn-wrapper">
                 <button class="btn" type="submit" name="action" value="bytags" >search by tags</button>

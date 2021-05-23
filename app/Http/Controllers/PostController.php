@@ -92,7 +92,7 @@ class PostController extends Controller
             // find tag by tagname and get its id 
             $tagid = DB::table("tags")->where("tagname", "=", $tag)->first();
             if (empty($tagid)){
-                break;
+                return [];
             }
             else {
                 $tagid = $tagid->id;

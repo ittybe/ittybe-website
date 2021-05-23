@@ -1843,12 +1843,24 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_generateToc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/generateToc */ "./resources/js/utils/generateToc.js");
+/* harmony import */ var _utils_fillInputField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/fillInputField */ "./resources/js/utils/fillInputField.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
 window.onload = function () {
-  (0,_utils_generateToc__WEBPACK_IMPORTED_MODULE_0__.generateToc)(".markdown-body");
+  try {
+    (0,_utils_fillInputField__WEBPACK_IMPORTED_MODULE_1__.fillInputField)();
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    (0,_utils_generateToc__WEBPACK_IMPORTED_MODULE_0__.generateToc)(".markdown-body");
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /***/ }),
@@ -1881,6 +1893,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/utils/fillInputField.js":
+/*!**********************************************!*\
+  !*** ./resources/js/utils/fillInputField.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fillInputField": () => (/* binding */ fillInputField)
+/* harmony export */ });
+// after entering data in input data in input field erases so this file to solve this problem 
+function fillInputField() {
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  var query = urlParams.get('q');
+  var inputField = document.querySelector(".input-group input");
+  inputField.value = query;
+}
 
 /***/ }),
 
