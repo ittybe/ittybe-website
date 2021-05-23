@@ -9,7 +9,7 @@
 @import "posts.scss";
 @import "post.scss";
 @import "markdown-body.scss";
-
+@import "searchbar.scss";
 .tile {
     @apply bg-gray-800 px-8 py-4 rounded;
     box-shadow: $tile-shadow;

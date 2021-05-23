@@ -3,8 +3,6 @@
 .post_summary {
     @apply m-6 block transition;
 
-    
-
     &:hover{
         @apply bg-gray-700;
     }
@@ -17,4 +15,8 @@
 .post_summary>div:first-child {
     @apply mb-4;
     @include post-title;
+}
+
+.searchbar-wrapper {
+    @apply flex p-8;
 }

@@ -1,0 +1,26 @@
+// @import "variables.scss";
+.searchbar {
+    @apply flex;
+    width: 100%;
+
+    input {
+        @apply rounded border-solid border-2 border-gray-300;
+        width: 100%;
+        height: 50px;
+        text-indent: 10px;
+    }
+    .btn-wrapper {
+        @apply flex justify-center lg:justify-start content-center my-4 flex-none;
+    }
+    .btn {
+        @apply rounded p-4 transition; 
+        background: $secondary-color;
+        width: 200px;
+        &:hover {
+            background: var(--color-auto-pink-5);
+        }
+    }
+    form {
+        width: 100%;
+    }
+}

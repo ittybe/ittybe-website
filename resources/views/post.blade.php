@@ -16,6 +16,18 @@
             @if (!empty($post_summary["updated_at"]))
             <div>updated at {{$post_summary["updated_at"]}}</div>
             @endif
+            
+            @if (!empty($post_summary["tags"]))
+            <div>
+                tags: 
+                @foreach ($post_summary["tags"] as $tag)
+                {{$tag}}
+                @if (!$loop->last)
+                , 
+                @endif
+                @endforeach
+            </div>
+            @endif
         </div>
     </div>
     <div class="post">
