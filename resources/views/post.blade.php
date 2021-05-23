@@ -21,10 +21,7 @@
             <div>
                 tags: 
                 @foreach ($post_summary["tags"] as $tag)
-                {{$tag}}
-                @if (!$loop->last)
-                , 
-                @endif
+                {{$tag}} 
                 @endforeach
             </div>
             @endif
