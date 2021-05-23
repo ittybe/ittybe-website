@@ -35,7 +35,82 @@ class PostController extends Controller
         ];
         return $post_summary;
     }
+
+    private function get_posts_summary_all(){
+        $posts = Post::all();
+        $postsids= [];
+        foreach ($posts as $post) {
+            array_push($postsids, $post["id"]);
+        }
+        return $this->get_posts_summary($postsids);
+    }
+
+    private function get_posts_summary($ids){
+        $posts = [];
+        foreach ($ids as $id) {
+            array_push($posts, Post::find($id));
+        }
+
+        $posts_summary = [];
+        foreach ($posts as $post) {
+            if ($post["published"]){
+                $post_summary = $this->get_post_summary($post["id"]);
+                array_push($posts_summary, $post_summary);
+            }
+            
+        }
+        return $posts_summary;
+    }
+
+    public function search(Request $request){
+        // get query in string format  
+        $query = trim($request->get("q"));
+        $action = trim($request->get("action"));
+        $posts_summary = [];
+        switch ($action) {
+            case 'bytags':
+                $this->search_by_tags($query);
+                break;
+            case 'byname':
+                $this->search_by_name($query);
+                break;
+        }
+
+        return view("posts", compact("posts_summary"));
+    }
     
+    private function search_by_tags($q){
+        // split by spaces 
+        $tags = explode(" ", $q);
+        
+        $postsids = [];
+        // foreach in list of query  
+        foreach ($tags as $tag) {
+            
+            // find tag by tagname and get its id 
+            $tagid = DB::table("tags")->where("tagname", "=", $tag);
+
+            // find and save all poststags
+            $poststags = DB::table("posts_tags")->where("tagid", $tagid)->get();
+            
+            // get post id from poststags and save id
+            foreach ($poststags as $posttag) {
+                $postid = $posttag["postid"];
+                array_push($postsids, $postid);
+            }
+        }
+
+        // eliminate all copies
+        array_unique($postsids);
+
+        // call get_posts_summary($ids) and give it saved ids 
+        return $this->get_posts_summary($postsids);
+    }   
+
+    private function search_by_name($q){
+
+    }
+
     /**
      * Display a listing of the resource.
      *
