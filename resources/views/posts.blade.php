@@ -6,10 +6,18 @@ Posts
 
 @section("content")
 <div class="section">
-    <div class="searchbar-wrapper">
-        @include("searchbar")
+    <div class="subsection">
+        <div class="wrapper searchbar-wrapper ">
+            @include("searchbar")
+        </div>
+        <div class="wrapper">
+            <div class="subsection-filler tile">
+                
+            </div>
+        </div>
     </div>
-    <div>
+
+    <div class="posts-wrapper">
         @foreach ($posts_summary as $post)
         <a href={{"/post/" . strval($post["id"])}} class="post_summary section tile">
 
@@ -25,7 +33,7 @@ Posts
                     @if (!empty($post["tags"]))
                     tags:
                     @foreach ($post["tags"] as $tag)
-                    {{$tag}} 
+                    {{$tag}}
                     @endforeach
                     @endif
                 </span>

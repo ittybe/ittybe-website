@@ -18942,7 +18942,10 @@ body, .page-wrapper {
 
 .post_summary {
   display: block;
-  margin: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
@@ -18971,7 +18974,33 @@ body, .page-wrapper {
 
 .searchbar-wrapper {
   display: flex;
-  padding: 2rem;
+}
+
+.subsection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.subsection .wrapper:not(.searchbar-wrapper) {
+  flex: 1 1 0%;
+  display: none;
+}
+
+.subsection .searchbar-wrapper {
+  padding-right: 1.5rem;
+  width: 60%;
+  min-width: 200px;
+}
+
+.subsection > div {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.posts-wrapper {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .post-section {

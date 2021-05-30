@@ -1,7 +1,7 @@
 @import "variables.scss";
 
 .post_summary {
-    @apply m-6 block transition;
+    @apply block py-6 my-6 transition;
 
     &:hover{
         @apply bg-gray-700;
@@ -18,5 +18,29 @@
 }
 
 .searchbar-wrapper {
-    @apply flex p-8;
+    @apply flex;
+}
+
+
+.subsection {
+    @apply flex flex-row justify-center;
+
+
+    .wrapper:not(.searchbar-wrapper) {
+        @apply flex-1 ;
+        display: none;
+    }
+
+    .searchbar-wrapper {
+        @apply  pr-6;
+        width: 60%;
+        min-width: 200px;
+    }
+}
+.subsection>div {
+    @apply py-6;
+}
+
+.posts-wrapper {
+    @apply py-6;
 }
